@@ -5,9 +5,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'SLASH DOCUMENTCLASS BEGIN END ARTICLE DOCUMENT TITLE AUTHOR DATE LBRACE RBRACE TEXTrootstatement : DOCUMENTCLASS LBRACE ARTICLE RBRACE body\n    optionaltags : TITLE LBRACE oneormoretext RBRACE\n                 | DATE LBRACE oneormoretext RBRACE\n                 | AUTHOR LBRACE oneormoretext RBRACE\n    body : optionaltags body\n            | SLASH BEGIN LBRACE DOCUMENT RBRACE oneormoretext SLASH END LBRACE DOCUMENT RBRACEoneormoretext : oneormoretext TEXT \n                     | TEXT  empty :'
+_lr_signature = 'SLASH DOCUMENTCLASS BEGIN END ARTICLE DOCUMENT TITLE AUTHOR DATE SECTION SUBSECTION USECTION BOLD ITALIC UNDERLINE LBRACE RBRACE TEXTrootstatement : DOCUMENTCLASS LBRACE ARTICLE RBRACE body\n    optionaltags : TITLE LBRACE oneormoretext RBRACE\n                 | DATE LBRACE oneormoretext RBRACE\n                 | AUTHOR LBRACE oneormoretext RBRACE\n    body : optionaltags body\n            | SLASH BEGIN LBRACE DOCUMENT RBRACE section SLASH END LBRACE DOCUMENT RBRACE\n            | SLASH BEGIN LBRACE DOCUMENT RBRACE usection SLASH END LBRACE DOCUMENT RBRACE\n            | SLASH BEGIN LBRACE DOCUMENT RBRACE oneormoretext SLASH END LBRACE DOCUMENT RBRACE\n    usection : USECTION LBRACE oneormoretext RBRACE subbody\n    \n    section : SECTION LBRACE oneormoretext RBRACE subbody\n    \n    subsection : SUBSECTION LBRACE oneormoretext RBRACE subbody\n    \n    subbody : section \n            | usection\n            | subsection\n            | oneormoretext subbody\n            | oneormoretext\n    oneormoretext : oneormoretext TEXT \n                     | TEXT  empty :'
     
-_lr_action_items = {'BEGIN':([8,],[13,]),'LBRACE':([2,7,9,11,13,30,],[3,12,14,16,19,31,]),'END':([29,],[30,]),'RBRACE':([4,17,18,20,21,22,24,32,],[5,-8,23,25,26,-7,27,33,]),'AUTHOR':([5,10,23,25,26,],[11,11,-2,-3,-4,]),'TEXT':([12,14,16,17,18,20,21,22,27,28,],[17,17,17,-8,22,22,22,-7,17,22,]),'TITLE':([5,10,23,25,26,],[7,7,-2,-3,-4,]),'DOCUMENTCLASS':([0,],[2,]),'SLASH':([5,10,17,22,23,25,26,28,],[8,8,-8,-7,-2,-3,-4,29,]),'DATE':([5,10,23,25,26,],[9,9,-2,-3,-4,]),'ARTICLE':([3,],[4,]),'DOCUMENT':([19,31,],[24,32,]),'$end':([1,6,15,33,],[0,-1,-5,-6,]),}
+_lr_action_items = {'USECTION':([17,27,43,47,49,59,65,],[-18,28,28,28,28,-17,28,]),'BEGIN':([8,],[13,]),'LBRACE':([2,7,9,11,13,28,32,39,40,41,48,],[3,12,14,16,19,33,37,44,45,46,58,]),'END':([34,35,36,],[39,40,41,]),'RBRACE':([4,17,18,20,21,22,24,38,42,54,55,56,64,],[5,-18,23,25,26,-17,27,43,47,61,62,63,65,]),'AUTHOR':([5,10,23,25,26,],[11,11,-2,-3,-4,]),'TEXT':([12,14,16,17,18,20,21,22,27,31,33,37,38,42,43,47,49,58,59,64,65,],[17,17,17,-18,22,22,22,-17,17,22,17,17,22,22,17,17,59,17,-17,22,17,]),'SECTION':([17,27,43,47,49,59,65,],[-18,32,32,32,32,-17,32,]),'TITLE':([5,10,23,25,26,],[7,7,-2,-3,-4,]),'DOCUMENTCLASS':([0,],[2,]),'SUBSECTION':([17,43,47,49,59,65,],[-18,48,48,48,-17,48,]),'SLASH':([5,10,17,22,23,25,26,29,30,31,49,50,51,52,53,57,59,60,66,],[8,8,-18,-17,-2,-3,-4,34,35,36,-16,-12,-13,-9,-14,-10,-17,-15,-11,]),'DATE':([5,10,23,25,26,],[9,9,-2,-3,-4,]),'ARTICLE':([3,],[4,]),'DOCUMENT':([19,44,45,46,],[24,54,55,56,]),'$end':([1,6,15,61,62,63,],[0,-1,-5,-6,-7,-8,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'body':([5,10,],[6,15,]),'rootstatement':([0,],[1,]),'optionaltags':([5,10,],[10,10,]),'oneormoretext':([12,14,16,27,],[18,20,21,28,]),}
+_lr_goto_items = {'body':([5,10,],[6,15,]),'oneormoretext':([12,14,16,27,33,37,43,47,49,58,65,],[18,20,21,31,38,42,49,49,49,64,49,]),'rootstatement':([0,],[1,]),'subbody':([43,47,49,65,],[52,57,60,66,]),'usection':([27,43,47,49,65,],[30,51,51,51,51,]),'optionaltags':([5,10,],[10,10,]),'section':([27,43,47,49,65,],[29,50,50,50,50,]),'subsection':([43,47,49,65,],[53,53,53,53,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,12 +27,22 @@ del _lr_goto_items
 _lr_productions = [
   ("S' -> rootstatement","S'",1,None,None,None),
   ('rootstatement -> DOCUMENTCLASS LBRACE ARTICLE RBRACE body','rootstatement',5,'p_rootstatement_terminal','parser.py',12),
-  ('optionaltags -> TITLE LBRACE oneormoretext RBRACE','optionaltags',4,'p_optionaltags_terminal','parser.py',21),
-  ('optionaltags -> DATE LBRACE oneormoretext RBRACE','optionaltags',4,'p_optionaltags_terminal','parser.py',22),
-  ('optionaltags -> AUTHOR LBRACE oneormoretext RBRACE','optionaltags',4,'p_optionaltags_terminal','parser.py',23),
-  ('body -> optionaltags body','body',2,'p_body_terminal','parser.py',33),
-  ('body -> SLASH BEGIN LBRACE DOCUMENT RBRACE oneormoretext SLASH END LBRACE DOCUMENT RBRACE','body',11,'p_body_terminal','parser.py',34),
-  ('oneormoretext -> oneormoretext TEXT','oneormoretext',2,'p_oneormoretext_terminal','parser.py',42),
-  ('oneormoretext -> TEXT','oneormoretext',1,'p_oneormoretext_terminal','parser.py',43),
-  ('empty -> <empty>','empty',0,'p_empty','parser.py',51),
+  ('optionaltags -> TITLE LBRACE oneormoretext RBRACE','optionaltags',4,'p_optionaltags_terminal','parser.py',20),
+  ('optionaltags -> DATE LBRACE oneormoretext RBRACE','optionaltags',4,'p_optionaltags_terminal','parser.py',21),
+  ('optionaltags -> AUTHOR LBRACE oneormoretext RBRACE','optionaltags',4,'p_optionaltags_terminal','parser.py',22),
+  ('body -> optionaltags body','body',2,'p_body_terminal','parser.py',32),
+  ('body -> SLASH BEGIN LBRACE DOCUMENT RBRACE section SLASH END LBRACE DOCUMENT RBRACE','body',11,'p_body_terminal','parser.py',33),
+  ('body -> SLASH BEGIN LBRACE DOCUMENT RBRACE usection SLASH END LBRACE DOCUMENT RBRACE','body',11,'p_body_terminal','parser.py',34),
+  ('body -> SLASH BEGIN LBRACE DOCUMENT RBRACE oneormoretext SLASH END LBRACE DOCUMENT RBRACE','body',11,'p_body_terminal','parser.py',35),
+  ('usection -> USECTION LBRACE oneormoretext RBRACE subbody','usection',5,'p_usection_terminal','parser.py',43),
+  ('section -> SECTION LBRACE oneormoretext RBRACE subbody','section',5,'p_section_terminal','parser.py',50),
+  ('subsection -> SUBSECTION LBRACE oneormoretext RBRACE subbody','subsection',5,'p_subsection_terminal','parser.py',57),
+  ('subbody -> section','subbody',1,'p_subbody_terminal','parser.py',64),
+  ('subbody -> usection','subbody',1,'p_subbody_terminal','parser.py',65),
+  ('subbody -> subsection','subbody',1,'p_subbody_terminal','parser.py',66),
+  ('subbody -> oneormoretext subbody','subbody',2,'p_subbody_terminal','parser.py',67),
+  ('subbody -> oneormoretext','subbody',1,'p_subbody_terminal','parser.py',68),
+  ('oneormoretext -> oneormoretext TEXT','oneormoretext',2,'p_oneormoretext_terminal','parser.py',87),
+  ('oneormoretext -> TEXT','oneormoretext',1,'p_oneormoretext_terminal','parser.py',88),
+  ('empty -> <empty>','empty',0,'p_empty','parser.py',96),
 ]

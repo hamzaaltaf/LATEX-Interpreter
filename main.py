@@ -10,7 +10,7 @@ import ply.yacc as yacc
 
 # DEBUGGING
 # from test import *
-# from pprint import pprint
+from pprint import pprint
 
 sys.path.insert(0, "../../")
 
@@ -46,7 +46,7 @@ def main(*args, **kwargs):
         print('TOKENS ENDED')
         try:
             res = parser.parse(''.join(latexCode))
-            print res
+            pprint(res)
             print "pdf made sucessfully as " + args[0] + ".pdf"
         except Exception as e:
             print(e)

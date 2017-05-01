@@ -1,0 +1,12 @@
+
+
+
+
+
+
+
+
+
+
+
+    '''rootstatement : DOCUMENTCLASS LBRACE ARTICLE RBRACE body END LBRACE ARTICLE RBRACE '''

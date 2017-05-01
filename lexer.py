@@ -17,13 +17,14 @@ tokens = (
 	'AUTHOR',			# author
 	'DATE',				# date
 	# 'MAKETITLE'			# maketitle
-	# 'SECTION',			# section
-	# 'SUBSECTION',		# subsection
-	# 'BOLD',				# bold
-	# 'ITALIC',			# italic
-	# 'UNDERLINE',		# underline
-	# 'ITEMIZE',			# itemize
-	# 'ITEM',				# item
+	'SECTION',			# section
+	'SUBSECTION',		# subsection
+	'USECTION',
+	'BOLD',				# bold
+	'ITALIC',			# italic
+	'UNDERLINE',		# underline
+	'ITEMIZE',			# itemize
+	'ITEM',				# item
 	# 'FIGURE',			# figure
 	# 'INCLUDEGRAPHICS',	# includegraphics
 	# 'WORD',				# apple
@@ -49,13 +50,14 @@ t_DATE			= r'\\date'
 
 #t_DATE_TEXT     = r'(\d+-\d+-\d+)'
 # t_MAKETITLE		= r'maketitle'
-# t_SECTION			= r'section'
-# t_SUBSECTION		= r'subsection'
-# t_BOLD			= r'textbf'
-# t_ITALIC			= r'textit'
-# t_UNDERLINE		= r'underline'
-# t_ITEMIZE			= r'itemize'
-# t_ITEM			= r'item'
+t_SECTION			= r'\\section'
+t_USECTION          = r'\\section*'
+t_SUBSECTION		= r'\\subsection'
+t_BOLD			= r'textbf'
+t_ITALIC			= r'textit'
+t_UNDERLINE		= r'underline'
+t_ITEMIZE			= r'itemize'
+t_ITEM			= r'item'
 # t_FIGURE			= r'figure'
 # t_INCLUDEGRAPHICS	= r'includegraphics'
 # t_WORD			= r'[a-zA-Z_][a-zA-Z_0-9]*'
